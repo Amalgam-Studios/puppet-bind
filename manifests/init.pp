@@ -81,6 +81,16 @@ class bind( $forwarders = undef,
     notify  => Exec['ncl_file_assemble'],
   }
 
+  file { $bind::params::ncl_v_ffd:
+    ensure  => directory,
+    owner   => root,
+    group   => $bind::params::group,
+    mode    => '0700',
+    require => [Package[$bind::params::package], File[$bind::params::ncl]],
+    recurse => true,
+    purge   => true,
+  }
+
   exec { $bind::params::ncl_file_assemble:
     refreshonly => true,
     require     => File[$bind::params::ncl_ffd],

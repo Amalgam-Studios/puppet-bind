@@ -9,6 +9,7 @@ class bind::params {
   $zone_dir = "/var/lib/${cn}"
   $ncl = "${conf_dir}/named.conf.local"
   $ncl_ffd = "${ncl}.d"
+  $ncl_v_ffd = "${ncl}.view.d"
   $ncl_file_assemble = 'ncl_file_assemble'
   $ncl_preamble = "${ncl_ffd}/00_named.conf.local_preamble"
 }

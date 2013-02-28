@@ -49,6 +49,7 @@
 #  }
 #
 define bind::zone($mname = $::fqdn,
+    $zone = undef,
     $rname = 'admin',
     $serial = 1,
     $refresh = 86400,
@@ -61,12 +62,29 @@ define bind::zone($mname = $::fqdn,
     $masters = undef,
     $allow_update = undef,
     $forwarders = undef,
-    $replace = true
+    $replace = true,
+    $view = false,
 ) {
   require bind::params
 
+  if $zone {
+    $realzone = $zone
+  } else {
+    $realzone = $name
+  }
+
+  if $view {
+    $dbfile = "${bind::params::zone_dir}/${view}/db.${realzone}"
+    $fragfile = "${bind::params::ncl_v_ffd}/${view}/01_named.conf.local_zone_fragment_${realzone}"
+    $assemble = "ncl_v_${view}_file_assemble"
+  } else {
+    $dbfile = "${bind::params::zone_dir}/db.${realzone}"
+    $fragfile = "${bind::params::ncl_ffd}/01_named.conf.local_zone_fragment_${realzone}"
+    $assemble = $bind::params::ncl_file_assemble
+  }
+
   if $mode == 'master' {
-    file { "${bind::params::zone_dir}/db.${name}":
+    file { $dbfile:
       ensure  => file,
       owner   => $bind::params::user,
       group   => $bind::params::group,
@@ -81,14 +99,14 @@ define bind::zone($mname = $::fqdn,
     }
   }
 
-  file { "${bind::params::ncl_ffd}/01_named.conf.local_zone_fragment_${name}":
+  file { $fragfile:
     ensure  => file,
     owner   => root,
     group   => $bind::params::group,
     mode    => '0644',
     content => template('bind/named.conf.local_zone_fragment.erb'),
     require => File[$bind::params::ncl_ffd],
-    notify  => Exec[$bind::params::ncl_file_assemble],
+    notify  => Exec[$assemble],
   }
 }
 

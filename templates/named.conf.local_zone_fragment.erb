@@ -1,14 +1,14 @@
 
-// Zone fragment for <%= name %>
+// Zone fragment for <%= realzone %>
 <%- if @forwarders -%>
-zone "<%= name %>" IN {
+zone "<%= realzone %>" IN {
   type <%= mode %>;
   forwarders { <%= forwarders %>; };
 };
 <%- else -%>
-zone "<%= name %>" IN {
+zone "<%= realzone %>" IN {
     type <%= mode %>;
-    file "<%= scope.lookupvar('bind::params::zone_dir') %>/db.<%= name %>";
+    file "<%= scope.lookupvar('bind::params::zone_dir') %><% if @view %>/<%= @view %><% end %>/db.<%= realzone %>";
   <% if mode == 'slave' -%>
     masters { <%= masters %>; };
   <% end -%>

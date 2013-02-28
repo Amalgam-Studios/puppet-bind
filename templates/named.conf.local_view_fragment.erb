@@ -1,0 +1,190 @@
+view "<%= @name %>" {
+<% if @additional_from_auth -%>
+    additional-from-auth <% if @additional_from_auth == true %>yes<% else %>no<% end %>
+<% end -%>
+<% if @additional_from_cache -%>
+    additional-from-cache <% if @additional_from_cache == true %>yes<% else %>no<% end %>
+<% end -%>
+<% if @allow_notify -%>
+    allow-notify { <% @allow_notify.each do |x| %><%= x %>;<% end %> };
+<% end -%>
+<% if @allow_query -%>
+    allow-query { <% @allow_query.each do |x| %><%= x %>;<% end %> };
+<% end -%>
+<% if @allow_recursion -%>
+    allow-recursion { <% @allow_recursion.each do |x| %><%= x %>;<% end %> };
+<% end -%>
+<% if @allow_transfer -%>
+    allow-transfer { <% @allow_transfer.each do |x| %><%= x %>;<% end %> };
+<% end -%>
+<% if @allow_update_forwarding -%>
+    allow-update-forwarding { <% @allow_update_forwarding.each do |x| %><%= x %>;<% end %> };
+<% end -%>
+<% if @also_notify -%>
+    also-notify { <% @also_notify.each do |x| %><%= x %>;<% end %> };
+<% end -%>
+<% if @alt_transfer_source -%>
+    alt-transfer-source <%= @alt_transfer_source %>
+<% end -%>
+<% if @alt_transfer_source_v6 -%>
+    alt-transfer-source-v6 <%= @alt_transfer_source_v6 %>
+<% end -%>
+<% if @auth_nxdomain -%>
+    auth-nxdomain <% if @auth_nxdomain == true %>yes<% else %>no<% end %>
+<% end -%>
+<% if @cleaning_interval -%>
+    cleaning-interval <%= @cleaning_interval %>
+<% end -%>
+<% if @dialup -%>
+    dialup <%= @dialup %>
+<% end -%>
+<% if @disable_algorithms -%>
+    disable-algorithms <%= @disable_algorithms %>
+<% end -%>
+<% if @dnssec_enable -%>
+    dnssec-enable <% if @dnssec_enable == true %>yes<% else %>no<% end %>
+<% end -%>
+<% if @dnssec_lookaside -%>
+    dnssec-lookaside <%= @dnssec_lookaside %>
+<% end -%>
+<% if @dnssec_must_be_secure -%>
+    dnssec-must-be-secure <% if @dnssec_must_be_secure == true %>yes<% else %>no<% end %>
+<% end -%>
+<% if @dual_stack_servers -%>
+    dual-stack-servers <%= @dual_stack_servers %>
+<% end -%>
+<% if @edns_udp_size -%>
+    edns-udp-size <%= @edns_udp_size %>
+<% end -%>
+<% if @files -%>
+    files <%= @files %>
+<% end -%>
+<% if @forward -%>
+    forward <%= @forward %>
+<% end -%>
+<% if @forwarders -%>
+    forwarders { <% @forwarders.each do |x| %><%= x %>;<% end %> };
+<% end -%>
+<% if @heartbeat_interval -%>
+    heartbeat-interval <%= @heartbeat_interval %>
+<% end -%>
+<% if @hostname -%>
+    hostname <%= @hostname %>
+<% end -%>
+<% if @ixfr_from_differences -%>
+    ixfr-from-differences <% if @ixfr_from_differences == true %>yes<% else %>no<% end %>
+<% end -%>
+<% if @key_directory -%>
+    key-directory <%= @key_directory %>
+<% end -%>
+<% if @lame_ttl -%>
+    lame-ttl <%= @lame_ttl %>
+<% end -%>
+<% if @match_clients -%>
+    match-clients { <% @match_clients.each do |x| %><%= x %>;<% end %> };
+<% end -%>
+<% if @match_destinations -%>
+    match-destinations { <% @match_destinations.each do |x| %><%= x %>;<% end %> };
+<% end -%>
+<% if @match_recursive_only -%>
+    match-recursive-only { <% @match_recursive_only.each do |x| %><%= x %>;<% end %> };
+<% end -%>
+<% if @max_cache_size -%>
+    max-cache-size <%= @max_cache_size %>
+<% end -%>
+<% if @max_cache_ttl -%>
+    max-cache-ttl <%= @max_cache_ttl %>
+<% end -%>
+<% if @max_journal_size -%>
+    max-journal-size <%= @max_journal_size %>
+<% end -%>
+<% if @max_ncache_ttl -%>
+    max-ncache-ttl <%= @max_ncache_ttl %>
+<% end -%>
+<% if @max_refresh_time -%>
+    max-refresh-time <%= @max_refresh_time %>
+<% end -%>
+<% if @max_retry_time -%>
+    max-retry-time <%= @max_retry_time %>
+<% end -%>
+<% if @max_transfer_idle_in -%>
+    max-transfer-idle-in <%= @max_transfer_idle_in %>
+<% end -%>
+<% if @max_transfer_idle_out -%>
+    max-transfer-idle-out <%= @max_transfer_idle_out %>
+<% end -%>
+<% if @max_transfer_time_in -%>
+    max-transfer-time-in <%= @max_transfer_time_in %>
+<% end -%>
+<% if @max_transfer_time_out -%>
+    max-transfer-time-out <%= @max_transfer_time_out %>
+<% end -%>
+<% if @min_refresh_time -%>
+    min-refresh-time <%= @min_refresh_time %>
+<% end -%>
+<% if @min_retry_time -%>
+    min-retry-time <%= @min_retry_time %>
+<% end -%>
+<% if @minimal_responses -%>
+    minimal-responses <% if @minimal_responses == true %>yes<% else %>no<% end %>
+<% end -%>
+<% if @multi_master -%>
+    multi-master <% if @multi_master == true %>yes<% else %>no<% end %>
+<% end -%>
+<% if @notify -%>
+    notify <%= @notify %>
+<% end -%>
+<% if @notify_source -%>
+    notify-source <%= @notify_source %>
+<% end -%>
+<% if @notify_source_v6 -%>
+    notify-source-v6 <%= @notify_source_v6 %>
+<% end -%>
+<% if @preferred_glue -%>
+    preferred-glue <%= @preferred_glue %>
+<% end -%>
+<% if @provide_ixfr -%>
+    provide-ixfr <% if @provide_ixfr == true %>yes<% else %>no<% end %>
+<% end -%>
+<% if @query_source -%>
+    query-source <%= @query_source %>
+<% end -%>
+<% if @query_source_v6 -%>
+    query-source-v6 <%= @query_source_v6 %>
+<% end -%>
+<% if @recursion -%>
+    recursion <% if @recursion == true %>yes<% else %>no<% end %>
+<% end -%>
+<% if @request_ixfr -%>
+    request-ixfr <% if @request_ixfr == true %>yes<% else %>no<% end %>
+<% end -%>
+<% if @root_delegation_only -%>
+    root-delegation-only <%= @root_delegation_only %>
+<% end -%>
+<% if @rrset_order -%>
+    rrset-order { <% @rrset_order.each do |x| %><%= x %>;<% end %> };
+<% end -%>
+<% if @sig_validity_interval -%>
+    sig-validity-interval <%= @sig_validity_interval %>
+<% end -%>
+<% if @sortlist -%>
+    sortlist { <% @sortlist.each do |x| %><%= x %>;<% end %> };
+<% end -%>
+<% if @sig_validity_interval -%>
+    sig-validity-interval <%= @sig_validity_interval %>
+<% end -%>
+<% if @transfer_format -%>
+    transfer-format <%= @transfer_format %>
+<% end -%>
+<% if @transfer_source -%>
+    transfer-source <%= @transfer_source %>
+<% end -%>
+<% if @transfer_source_v6 -%>
+    transfer-source-v6 <%= @transfer_source_v6 %>
+<% end -%>
+<% if @use_alt_transfer_source -%>
+    use-alt-transfer-source <% if @use_alt_transfer_source == true %>yes<% else %>no<% end %>
+<% end -%>
+<% if @zone_statistics -%>
+    zone-statistics <% if @zone_statistics == true %>yes<% else %>no<% end %>
+<% end -%>
