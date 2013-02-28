@@ -72,14 +72,15 @@ define bind::zone($mname = $::fqdn,
   } else {
     $realzone = $name
   }
+  $fragment = "01_named.conf.local_zone_fragment_${realzone}"
 
   if $view {
     $dbfile = "${bind::params::zone_dir}/${view}/db.${realzone}"
-    $fragfile = "${bind::params::ncl_v_ffd}/${view}/01_named.conf.local_zone_fragment_${realzone}"
+    $fragfile = "${bind::params::ncl_v_ffd}/${view}/${fragment}"
     $assemble = "ncl_v_${view}_file_assemble"
   } else {
     $dbfile = "${bind::params::zone_dir}/db.${realzone}"
-    $fragfile = "${bind::params::ncl_ffd}/01_named.conf.local_zone_fragment_${realzone}"
+    $fragfile = "${bind::params::ncl_ffd}/${fragment}"
     $assemble = $bind::params::ncl_file_assemble
   }
 

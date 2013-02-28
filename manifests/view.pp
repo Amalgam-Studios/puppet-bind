@@ -71,6 +71,11 @@ define bind::view(
 ) {
   require bind::params
 
+  $header = '00_named.conf.local_view_fragment_header'
+  $footer = 'ZZZ_named.conf.local_view_fragment_footer'
+  $fragment = "05_named.conf.local_view_fragment_${name}"
+  $fragfile = "${bind::params::ncl_ffd}/${fragment}"
+
   file { "${bind::params::zone_dir}/${name}":
     ensure  => directory,
     owner   => root,
@@ -90,7 +95,7 @@ define bind::view(
     require => File[$bind::params::ncl_v_ffd],
   }
 
-  file { "${bind::params::ncl_v_ffd}/${name}/00_named.conf.local_view_fragment_header":
+  file { "${bind::params::ncl_v_ffd}/${name}/${header}":
     ensure  => file,
     owner   => root,
     group   => $bind::params::group,
@@ -100,7 +105,7 @@ define bind::view(
     notify  => Exec[ "ncl_v_${name}_file_assemble" ],
   }
 
-  file { "${bind::params::ncl_v_ffd}/${name}/ZZZ_named.conf.local_view_fragment_footer":
+  file { "${bind::params::ncl_v_ffd}/${name}/${footer}":
     ensure  => file,
     owner   => root,
     group   => $bind::params::group,
@@ -111,7 +116,7 @@ define bind::view(
     notify  => Exec[ "ncl_v_${name}_file_assemble" ],
   }
 
-  file { "${bind::params::ncl_ffd}/05_named.conf.local_view_fragment_${name}":
+  file { "${bind::params::ncl_ffd}/${fragment}":
     ensure  => file,
     owner   => root,
     group   => $bind::params::group,
@@ -124,7 +129,7 @@ define bind::view(
     refreshonly => true,
     require     => File[ "${bind::params::ncl_v_ffd}/${name}" ],
     notify      => Exec[ $bind::params::ncl_file_assemble ],
-    command     => "/bin/cat ${bind::params::ncl_v_ffd}/${name}/* > ${bind::params::ncl_ffd}/05_named.conf.local_view_fragment_${name}",
+    command     => "/bin/cat ${bind::params::ncl_v_ffd}/${name}/* > ${fragfile}"
   }
 }
 
