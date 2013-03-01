@@ -78,7 +78,7 @@ define bind::view(
 
   file { "${bind::params::zone_dir}/${name}":
     ensure  => directory,
-    owner   => root,
+    owner   => $bind::params::user,
     group   => $bind::params::group,
     mode    => '0750',
     require => [Package[$bind::params::package], File[$bind::params::ncl]],
