@@ -84,19 +84,21 @@ define bind::zone($mname = $::fqdn,
     $assemble = $bind::params::ncl_file_assemble
   }
 
-  if $mode == 'master' {
     file { $dbfile:
       ensure  => file,
       owner   => $bind::params::user,
       group   => $bind::params::group,
       mode    => '0644',
       replace => $replace,
-      content => template('bind/zone_file.erb'),
       require => [
         Package[$bind::params::package],
         File[$bind::params::zone_dir]
       ],
       notify  => Service[$bind::params::service],
+    }
+  if $mode == 'master' {
+    File[ $dbfile ] {
+      content => template('bind/zone_file.erb'),
     }
   }
 
