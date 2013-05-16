@@ -18,6 +18,8 @@ class bind( $forwarders = undef,
             $transfer_servers = undef,
             $mode = 'master',
             $allow_query = undef,
+            $allow_recursion = undef,
+            $allow_recursion_defaults = true,
           ) {
   include bind::params
 

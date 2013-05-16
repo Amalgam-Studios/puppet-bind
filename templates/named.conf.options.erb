@@ -23,6 +23,18 @@ options {
       <% allow_query.each do |range| %><%=  range %>;<% end %>
       };<% end %>
 
+<% if allow_recursion != :undef -%>
+    allow-recursion {
+<% if allow_recursion_defaults == true -%>
+        localnets;
+        localhost;
+<% end -%>
+<% allow_recursion.each do |x| -%>
+        <%= x %>;
+<% end -%>
+    };
+<% end -%>
+
     auth-nxdomain no;    # conform to RFC1035
     listen-on-v6 { any; };
     dnssec-enable yes;    
