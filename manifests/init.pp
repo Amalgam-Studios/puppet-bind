@@ -15,6 +15,7 @@
 #    }
 #
 class bind( $forwarders = undef,
+            $forward_only = false,
             $transfer_servers = undef,
             $mode = 'master',
             $allow_query = undef,

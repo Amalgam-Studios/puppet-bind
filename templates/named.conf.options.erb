@@ -13,6 +13,9 @@ options {
     // Uncomment the following block, and insert the addresses replacing 
     // the all-0's placeholder.
 
+<% if @forward_only == true -%>
+    forward only;
+<% end -%>
 <% if forwarders != :undef %>   forwarders {
 <% forwarders.each do |forwarder| -%>
         <%= forwarder %>;
