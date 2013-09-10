@@ -82,8 +82,6 @@ define bind::view(
     group   => $bind::params::group,
     mode    => '0750',
     require => [Package[$bind::params::package], File[$bind::params::ncl]],
-    recurse => true,
-    purge   => true,
   }
 
   file { "${bind::params::ncl_v_ffd}/${name}":
