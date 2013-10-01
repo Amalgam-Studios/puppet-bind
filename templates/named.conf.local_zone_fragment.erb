@@ -15,7 +15,7 @@ zone "<%= realzone %>" IN {
   <%- if @allow_update -%>
     allow-update { key <%= allow_update %>; };
   <%- end %>
-<% if @check_names != :undef -%>
+<% if @check_names -%>
     check-names <%= @check_names %>;
 <% end -%>
 };
