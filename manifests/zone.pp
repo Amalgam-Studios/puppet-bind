@@ -64,7 +64,7 @@ define bind::zone($mname = $::fqdn,
     $forwarders = undef,
     $replace = true,
     $view = false,
-    $check_names = false,
+    $check_names = undef,
 ) {
   require bind::params
 
